@@ -4,9 +4,9 @@ import { mockConversations } from '../data/mockConversations';
 
 export const useConversation = () => {
     const [messages, setMessages] = useState<Message[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        // Simulate loading initial messages
         setMessages(mockConversations);
     }, []);
 
@@ -18,19 +18,20 @@ export const useConversation = () => {
             timestamp: Date.now(),
         };
         setMessages((prevMessages) => [...prevMessages, newUserMessage]);
+        setIsLoading(true);
 
-        // Simulate agent response
         setTimeout(() => {
             const newAgentMessage: Message = {
                 id: String(messages.length + 2),
                 sender: 'agent',
-                text: `Agent 收到您的消息: "${text}"`, // Simple echo for now
+                text: `Agent 收到您的消息: "${text}"`, 
                 timestamp: Date.now(),
             };
             setMessages((prevMessages) => [...prevMessages, newAgentMessage]);
+            setIsLoading(false);
         }, 1000);
     };
 
-    return { messages, sendMessage };
+    return { messages, sendMessage, isLoading };
 };
 
