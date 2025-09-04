@@ -26,3 +26,4 @@ export const mockConversations: Message[] = [
         timestamp: Date.now() - 20000,
     },
 ];
+

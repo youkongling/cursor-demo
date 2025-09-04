@@ -29,3 +29,4 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
 };
 
 export default MessageInput;
+
